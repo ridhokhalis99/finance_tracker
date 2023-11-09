@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2023_11_09_063535) do
 
   create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
+    t.text "name"
     t.decimal "amount", precision: 10
     t.bigint "category_id"
     t.text "description"

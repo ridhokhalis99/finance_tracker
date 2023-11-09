@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <button class="btn btn-dark mb-3">
+        New Transaction
+      </button>
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          Transactions
+        </div>
+        <div class="card-body">
+          <% @transactions.each_with_index do |transaction, index| %>
+            <% if index == @transactions.length - 1 %>
+                <div class="mb-3">
+            <% else %>
+                <div class="mb-3 border-bottom">
+            <% end %>
+              <h4><%= link_to transaction.name, transaction, class: 'text-dark text-decoration-none'  %></h4>
+              <p class="text-muted mb-2"><strong>Amount:</strong> <%= number_to_currency(transaction.amount) %></p>
+              <p class="text-muted mb-2"><strong>Description:</strong> <%= transaction.description %></p>
+              <p class="text-muted"><strong>Date:</strong> <%= transaction.transaction_date.strftime('%B %d, %Y') %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
