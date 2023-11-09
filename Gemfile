@@ -70,3 +70,7 @@ gem 'bootstrap', '~> 5.3.2'
 gem 'dartsass-sprockets'
 
 gem 'jquery-rails'
+
+gem "font-awesome-sass", "~> 6.4.2"
+
+gem "ransack"

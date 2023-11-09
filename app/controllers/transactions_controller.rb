@@ -2,7 +2,8 @@ class TransactionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @transactions = Transaction.where(user: current_user)
+    @q = Transaction.ransack(params[:q])
+    @transactions = @q.result(distinct: true).where(user_id: current_user.id).order(transaction_date: :desc)
   end
 
   def show
