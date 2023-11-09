@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  amount: 9.99
+  category: one
+  description: MyText
+  transaction_date: 2023-11-09
+
+two:
+  user: two
+  amount: 9.99
+  category: two
+  description: MyText
+  transaction_date: 2023-11-09
