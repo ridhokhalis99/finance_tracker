@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'transactions#index'
+  root to: 'transaction#index'
 end
