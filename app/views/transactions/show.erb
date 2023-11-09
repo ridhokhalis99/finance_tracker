@@ -6,11 +6,13 @@
           Transaction Details
         </div>
         <div class="card-body">
-          <p><strong><%= @transaction.name %></strong></p>
+          <h4><strong><%= @transaction.name %></strong></h4>
           <p><strong>Amount:</strong> <%= number_to_currency(@transaction.amount) %></p>
           <p><strong>Description:</strong> <%= @transaction.description %></p>
           <p><strong>Category:</strong> <%= @transaction.category.name %></p>
           <p><strong>Transaction Date:</strong> <%= @transaction.transaction_date.strftime('%B %d, %Y') %></p>
+          <button class="btn btn-dark"><%= link_to 'Edit', edit_transaction_path(@transaction), class: 'text-white text-decoration-none' %></button>
+          <button class="btn btn-danger"><%= link_to 'Delete', transaction_path(@transaction), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-white text-decoration-none' %></button>
         </div>
       </div>
     </div>

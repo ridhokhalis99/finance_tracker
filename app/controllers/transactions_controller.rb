@@ -25,6 +25,23 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def edit
+    @transaction = Transaction.find(params[:id])
+    @categories = Category.all
+  end
+
+  def update
+    @transaction = Transaction.find(params[:id])
+    @transaction.update(transaction_params)
+    redirect_to transaction_path(@transaction)
+  end
+
+  def destroy
+    @transaction = Transaction.find(params[:id])
+    @transaction.destroy
+    redirect_to transactions_path
+  end
+
   def transaction_params
     params.require(:transaction).permit(:name, :amount, :description, :category_id, :transaction_date)
   end
