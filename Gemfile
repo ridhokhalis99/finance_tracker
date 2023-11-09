@@ -64,3 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 
 gem 'devise', '~> 4.9', '>= 4.9.2'
+
+gem 'bootstrap', '~> 5.3.2'
+
+gem 'dartsass-sprockets'
+
+gem 'jquery-rails'
