@@ -79,3 +79,7 @@ gem 'roo-xls'
 
 gem 'caxlsx'
 gem 'caxlsx_rails'
+
+gem "sidekiq", "~> 6.5"
+
+gem "sidekiq-scheduler", "~> 4.0"

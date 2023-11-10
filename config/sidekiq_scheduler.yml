@@ -1,0 +1,4 @@
+:schedules:
+  name: daily_summary_email
+  cron: "50 16 * * *"
+  class: "SendDailyReportTransactionJob"
