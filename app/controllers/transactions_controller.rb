@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  include ImportXls
+  include Xls
   before_action :authenticate_user!
 
   def index
@@ -54,7 +54,7 @@ class TransactionsController < ApplicationController
 
   def import
     file = params[:file]
-    transactions = ImportXls.import(file)
+    transactions = Xls.import(file)
 
     transactions.each_with_index do |transaction, index|
       begin
@@ -76,7 +76,7 @@ class TransactionsController < ApplicationController
         return
       end
     end
-
+    redirect_to transactions_path
   end
 
   private
