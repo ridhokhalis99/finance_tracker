@@ -3,7 +3,7 @@
     <div class="col-md-6 offset-md-3">
       <div class="card">
         <div class="card-header">
-          New Transaction
+          Edit Transaction
         </div>
         <div class="card-body">
           <%= form_with(model: @transaction, local: true) do |form| %>
@@ -30,6 +30,10 @@
             <div class="form-group mb-4">
               <%= form.label :receipt %>
               <%= form.file_field :receipt, class: 'form-control' %>
+              <% if @transaction.receipt.attached? %>
+                <p>Current file: <%= @transaction.receipt.filename %></p>
+                <%= form.check_box :remove_receipt %> Remove receipt
+              <% end %>
             </div>
             <%= form.submit 'Edit Transaction', class: 'btn btn-dark' %>
           <% end %>
