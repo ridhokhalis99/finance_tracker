@@ -76,3 +76,6 @@ gem "font-awesome-sass", "~> 6.4.2"
 gem "ransack"
 
 gem 'roo-xls'
+
+gem 'caxlsx'
+gem 'caxlsx_rails'

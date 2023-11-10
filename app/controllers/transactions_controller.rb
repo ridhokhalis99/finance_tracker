@@ -79,6 +79,23 @@ class TransactionsController < ApplicationController
     redirect_to transactions_path
   end
 
+  def export
+    transactions = Transaction.where(user_id: current_user.id).order(transaction_date: :desc)
+    xls_rows = transactions.map do |transaction|
+      category_name = Category.find(transaction.category_id).name
+      [
+        transaction.name,
+        transaction.amount,
+        transaction.description,
+        category_name,
+        transaction.transaction_date
+      ]
+    end
+    headers = ['Name', 'Amount', 'Description', 'Category', 'Transaction Date']
+    xls = Xls.export(headers, xls_rows)
+    send_data xls, filename: 'transactions.xlsx'
+  end
+
   private
 
   def transaction_params
