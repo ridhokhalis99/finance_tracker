@@ -23,7 +23,8 @@ class TransactionsController < ApplicationController
     if @transaction.save
       redirect_to transaction_path(@transaction)
     else
-      render :new
+      flash[:error] = @transaction.errors.full_messages.to_sentence
+      redirect_to new_transaction_path
     end
   end
 
@@ -34,8 +35,12 @@ class TransactionsController < ApplicationController
 
   def update
     @transaction = Transaction.find(params[:id])
-    @transaction.update(transaction_params)
-    redirect_to transaction_path(@transaction)
+    if @transaction.update(transaction_params)
+      redirect_to transaction_path(@transaction)
+    else
+      flash[:error] = @transaction.errors.full_messages.to_sentence
+      redirect_to edit_transaction_path
+    end
   end
 
   def destroy
