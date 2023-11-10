@@ -10,6 +10,22 @@
   </head>
 
   <body>
+    <nav class="navbar-dark bg-dark">
+      <div class="col-md-4 mx-auto navbar">
+        <%= link_to "Home", transactions_path, class: "text-white text-decoration-none" %>
+        <% if user_signed_in? %>
+          <%= link_to "New Transaction", new_transaction_path, class: "text-white text-decoration-none" %>
+          <%= link_to "Profile", edit_user_registration_path, class: "text-white text-decoration-none" %>
+          <div class="ml-auto">
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-light" %>
+          </div>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path,  class: "text-white text-decoration-none" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-light" %>
+        <% end %>
+      </div>
+    </nav>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
