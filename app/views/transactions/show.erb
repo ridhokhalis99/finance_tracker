@@ -7,10 +7,18 @@
         </div>
         <div class="card-body">
           <h4><strong><%= @transaction.name %></strong></h4>
-          <p><strong>Amount:</strong> <%= number_to_currency(@transaction.amount) %></p>
+          <p><strong>Amount:</strong> <%= number_to_currency(@transaction.amount, unit: "Rp", format: "%u %n") %></p>
           <p><strong>Description:</strong> <%= @transaction.description %></p>
           <p><strong>Category:</strong> <%= @transaction.category.name %></p>
           <p><strong>Transaction Date:</strong> <%= @transaction.transaction_date.strftime('%B %d, %Y') %></p>
+          <% if @transaction.receipt.attached? %>
+            <p><strong>Receipt:</strong></p>
+            <%= link_to url_for(@transaction.receipt), target: "_blank" do %>
+              <%= image_tag @transaction.receipt, class: 'img-fluid mb-4 d-block w-25' %>
+            <% end %>
+          <% else %>
+            <p><strong>Receipt:</strong> No receipt attached.</p>
+          <% end %>
           <button class="btn btn-dark"><%= link_to 'Edit', edit_transaction_path(@transaction), class: 'text-white text-decoration-none' %></button>
           <button class="btn btn-danger"><%= link_to 'Delete', transaction_path(@transaction), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-white text-decoration-none' %></button>
         </div>

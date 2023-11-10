@@ -25,7 +25,7 @@
                 <div class="mb-3 border-bottom">
             <% end %>
               <h4><%= link_to transaction.name, transaction, class: 'text-dark text-decoration-none'  %></h4>
-              <p class="text-muted mb-2"><strong>Amount:</strong> <%= number_to_currency(transaction.amount) %></p>
+              <p class="text-muted mb-2"><strong>Amount:</strong> <%= number_to_currency(transaction.amount, unit: "Rp", format: "%u %n") %></p>
               <p class="text-muted mb-2"><strong>Description:</strong> <%= transaction.description %></p>
               <p class="text-muted mb-2"><strong>Category:</strong> <%= transaction.category.name %></p>
               <p class="text-muted"><strong>Date:</strong> <%= transaction.transaction_date.strftime('%B %d, %Y') %></p>
