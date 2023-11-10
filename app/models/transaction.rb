@@ -2,6 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_one_attached :receipt
+  validates :name, :amount, :category_id, presence: true
 
   attr_accessor :remove_receipt
 

@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="mb-4">Import XLS Transactions</h2>
+      <% if flash[:error] %>
+        <div class="alert alert-danger">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      <%= link_to 'Download Template', '/templates/finance_tracker_template.xlsx', class: 'btn btn-secondary mb-4' %>
+      <%= form_with(url: transaction_import_path, multipart: true) do |form| %>
+        <div class="mb-3">
+          <%= form.label :file, class: 'form-label' %>
+          <%= form.file_field :file, class: 'form-control', accept: '.xls, .xlsx' %>
+        </div>
+        <%= form.submit "Import", class: 'btn btn-dark w-100' %>
+      <% end %>
+    </div>
+  </div>
+</div>

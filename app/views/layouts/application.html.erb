@@ -11,13 +11,14 @@
 
   <body>
     <nav class="navbar-dark bg-dark">
-      <div class="col-md-4 mx-auto navbar">
+      <div class="col-md-6 mx-auto navbar">
         <%= link_to "Home", transactions_path, class: "text-white text-decoration-none" %>
         <% if user_signed_in? %>
           <%= link_to "New Transaction", new_transaction_path, class: "text-white text-decoration-none" %>
+          <%= link_to "Import Transactions", transaction_import_form_path, class: "text-white text-decoration-none" %> 
           <%= link_to "Profile", edit_user_registration_path, class: "text-white text-decoration-none" %>
           <div class="ml-auto">
-          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-light" %>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-light" %>
           </div>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path,  class: "text-white text-decoration-none" %>

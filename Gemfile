@@ -74,3 +74,5 @@ gem 'jquery-rails'
 gem "font-awesome-sass", "~> 6.4.2"
 
 gem "ransack"
+
+gem 'roo-xls'

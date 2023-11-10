@@ -1,11 +1,8 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <button class="btn btn-dark mb-3">
-        <%= link_to 'New Transaction', new_transaction_path, class: 'text-white text-decoration-none' %>
-      </button>
-      <div class="d-flex">
-        <%= search_form_for @q, url: transactions_path, method: :get, class: 'input-group rounded mb-3 w-50' do |f| %>
+      <div class="d-flex col-md-6">
+        <%= search_form_for @q, url: transactions_path, method: :get, class: 'input-group rounded mb-3 w-100' do |f| %>
           <%= f.search_field :name_cont, class: 'form-control rounded', placeholder: 'Search' %>
           <%= f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'All Categories' }, class: 'form-control rounded ms-2' %>
           <button class="input-group-text border-0 btn ms-2">
