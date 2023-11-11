@@ -16,7 +16,7 @@
         <% if user_signed_in? %>
           <%= link_to "New Transaction", new_transaction_path, class: "text-white text-decoration-none" %>
           <%= link_to "Import Transactions", transaction_import_form_path, class: "text-white text-decoration-none" %> 
-          <%= link_to "Export Transactions", transaction_export_path, class: "text-white text-decoration-none" %>
+          <%= link_to "Export Transactions", transaction_export_path, method: :post, class: "text-white text-decoration-none" %>
           <%= link_to "Profile", edit_user_registration_path, class: "text-white text-decoration-none" %>
           <div class="ml-auto">
             <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-light" %>
