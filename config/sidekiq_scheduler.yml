@@ -1,4 +1,4 @@
 :schedules:
   name: daily_summary_email
-  cron: "50 16 * * *"
+  cron: "50 16 * * *" # 11:50 PM GMT + 7
   class: "SendDailyReportTransactionJob"

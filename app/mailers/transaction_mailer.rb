@@ -2,20 +2,10 @@ class TransactionMailer < ApplicationMailer
   include Xls
   def daily_report (user)
     transactions = Transaction.where(user_id: user.id, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-    xls_rows = transactions.map do |transaction|
-      category_name = Category.find(transaction.category_id).name
-      [
-        transaction.name,
-        transaction.amount,
-        transaction.description,
-        category_name,
-        transaction.transaction_date
-      ]
-    end
-    headers = ['Name', 'Amount', 'Description', 'Category', 'Transaction Date']
-    xls = Xls.export(headers, xls_rows)
-    attachments["daily_report.xls"] = xls
+    return if transactions.empty?
+    xls = Transaction.generate_xls(transactions)
+    attachments["daily_report_#{Time.zone.now.strftime('%Y_%m_%d')}.xls"] = xls
     @user = user
-    mail(to: user.email, subject: 'Daily Report')
+    mail(to: user.email, subject: "Daily report #{Time.zone.now.strftime('%d-%m-%Y')}")
   end
 end
