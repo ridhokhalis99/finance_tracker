@@ -1,46 +1,15 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <% if flash[:error] %>
-        <div class="alert alert-danger">
-          <%= flash[:error] %>
-        </div>
-      <% end %>
+      <%= render 'flash_messages' %>
       <div class="card">
         <div class="card-header">
           Edit Transaction
         </div>
         <div class="card-body">
           <%= form_with(model: @transaction, local: true) do |form| %>
-            <div class="form-group mb-4">
-              <%= form.label :name %>
-              <%= form.text_field :name, class: 'form-control', placeholder: 'Enter name', required: true %>
-            </div>
-            <div class="form-group mb-4">
-              <%= form.label :amount %>
-              <%= form.number_field :amount, class: 'form-control', placeholder: 'Enter amount', required: true %>
-            </div>
-            <div class="form-group mb-4">
-              <%= form.label :description %>
-              <%= form.text_field :description, class: 'form-control', placeholder: 'Enter description'%>
-            </div>
-            <div class="form-group mb-4">
-              <%= form.label :category_id %>
-              <%= form.collection_select :category_id, @categories, :id, :name, { prompt: 'Select category' }, class: 'form-control' %>
-            </div>
-            <div class="form-group mb-4">
-              <%= form.label :transaction_date %>
-              <%= form.date_field :transaction_date, class: 'form-control', required: true, max: Date.today, value: Date.today  %>
-            </div>
-            <div class="form-group mb-4">
-              <%= form.label :receipt %>
-              <%= form.file_field :receipt, class: 'form-control' %>
-              <% if @transaction.receipt.attached? %>
-                <p>Current file: <%= @transaction.receipt.filename %></p>
-                <%= form.check_box :remove_receipt %> Remove receipt
-              <% end %>
-            </div>
-            <%= form.submit 'Edit Transaction', class: 'btn btn-dark' %>
+            <%= render 'form_fields', form: form %>
+            <%= form.submit 'Create Transaction', class: 'btn btn-dark' %>
           <% end %>
         </div>
       </div>

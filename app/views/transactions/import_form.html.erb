@@ -2,11 +2,7 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <h2 class="mb-4">Import XLS Transactions</h2>
-      <% if flash[:error] %>
-        <div class="alert alert-danger">
-          <%= flash[:error] %>
-        </div>
-      <% end %>
+      <%= render 'flash_messages' %>
       <%= link_to 'Download Template', '/templates/finance_tracker_template.xlsx', class: 'btn btn-secondary mb-4' %>
       <%= form_with(url: transaction_import_path, multipart: true) do |form| %>
         <div class="mb-3">
