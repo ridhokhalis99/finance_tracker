@@ -29,4 +29,25 @@ class Transaction < ApplicationRecord
     headers = ['Name', 'Amount', 'Description', 'Category', 'Transaction Date']
     xls = Xls.export(headers, xls_rows)
   end
+
+  def self.create_from_import(file, current_user)
+    transactions = Xls.import(file)
+    transactions.each_with_index do |transaction, index|
+      next if index.zero?
+
+      category_id = Category.find_by(name: transaction[3])&.id || Category.find_by(name: 'Other')&.id
+      begin
+        create!(
+          name: transaction[0],
+          amount: transaction[1],
+          description: transaction[2],
+          category_id: category_id,
+          transaction_date: transaction[4],
+          user_id: current_user.id
+        )
+      rescue => e
+        return { error: "Error in row #{index + 1}: #{e.message}" }
+      end
+    end
+  end
 end
