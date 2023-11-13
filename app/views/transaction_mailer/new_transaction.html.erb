@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h2>New Transaction Created!</h2>
+
+  <p>Hello <%= @user.email %>,</p>
+
+  <p>We are writing to inform you that a new transaction has been created:</p>
+
+  <ul>
+    <li><strong>Name:</strong> <%= @transaction.name %></li>
+    <li><strong>Amount:</strong> <%= @transaction.amount %></li>
+    <li><strong>Description:</strong> <%= @transaction.description %></li>
+    <li><strong>Category:</strong> <%= @transaction.category.name %></li>
+    <li><strong>Transaction Date:</strong> <%= @transaction.transaction_date %></li>
+  </ul>
+
+  <p>Thank you for using our service!</p>
+</body>
+</html>

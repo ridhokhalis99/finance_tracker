@@ -9,6 +9,7 @@ class Transaction < ApplicationRecord
 
   attr_accessor :remove_receipt
   before_save :check_remove_receipt
+  after_create :send_email
 
   def check_remove_receipt
     puts "remove_receipt: #{remove_receipt}"
@@ -49,5 +50,9 @@ class Transaction < ApplicationRecord
         return { error: "Error in row #{index + 1}: #{e.message}" }
       end
     end
+  end
+
+  def send_email
+    SendTransactionEmailJob.perform_later(id)
   end
 end
